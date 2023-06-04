@@ -52,6 +52,7 @@ public class QueueController {
         if (virtualQueue == null) {
             return "redirect:/schedule";
         }
+        model.addAttribute("pair", pair);
         model.addAttribute("currentUser", user);
         model.addAttribute("virtualQueue", virtualQueue);
         return "virtualqueuelist";

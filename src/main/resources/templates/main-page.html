@@ -62,14 +62,29 @@
     <section class="main-part d-flex justify-content-center flex-column" style="height: 89vh;">
       <div class="first-part text-center mb-2" style="border-bottom: 1px solid #04d9ff">
         <h2 class="title display-5" th:text="|Добро пожаловать, ${currentUser.getSecondName()} ${currentUser.getFirstName()}|"></h2>
-        <p class="subtitle lead">Для продолжения выберите функцию:</p>
       </div>
-      <div class="group d-flex flex-column p-3" style="align-items: center; border-bottom: 1px solid #04d9ff">
-        <div class="btn-group mb-3 w-50">
-          <a class="btn btn-primary text-dark" style="background: #04d9ff; border: 1px solid #04d9ff" href="#">Занять очередь</a>
+      <div class="group d-flex flex-row p-3" style="align-items: center;">
+        <div class="w-50 px-3">
+          <p class="lead text-center" style="">В данном приложении вам доступны следующие функции:</p>
+          <ul class="lead w-100" style="list-style: none;">
+            <li class="p-2" style="border-left: 1px solid #04d9ff;">
+              Просмотр списка студентов из группы и их информация;
+            </li>
+            <li class="p-2" style="border-left: 1px solid #04d9ff;">
+              Просмотр списка преподавателей дисциплин на текущий семеcтр и их информация;
+            </li>
+            <li class="p-2" style="border-left: 1px solid #04d9ff;">
+              Просмотр расписания занятий;
+            </li>
+            <li class="p-2" style="border-left: 1px solid #04d9ff;">
+              Занимание виртуальной очереди на сдачу студенческих работ.
+            </li>
+          </ul>
         </div>
-        <div class="btn-group mb-2 w-50">
-          <a class="btn btn-primary text-dark" style="background: #04d9ff; border: 1px solid #04d9ff" href="#">Расписание</a>
+        <div class="w-50">
+          <div class="btn-group w-100">
+            <a class="btn btn-primary text-dark" style="background: #04d9ff; border: 1px solid #04d9ff" th:href="@{/schedule}">Занять очередь</a>
+          </div>
         </div>
       </div>
 

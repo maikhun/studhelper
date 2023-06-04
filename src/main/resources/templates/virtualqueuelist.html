@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Виртуальная очередь на предмет</title>
+  <title th:text="|Виртуальная очередь на ${pair.getSubject().getName().toLowerCase()}|">Виртуальная очередь на предмет</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -60,8 +60,9 @@
 </header>
 <div class="container-md d-flex flex-column justify-content-center" style="margin: 2.5% auto;">
   <div class="lead m-5 p-3 w-100 text-center">
-    <h3 class="lead display-6 w-100" style="border-bottom: 1px solid #04d9ff;">Виртуальная очередь</h3>
-    <div class="d-flex my-5 w-50 justify-content-between flex-row" style="border-bottom: 2px solid #04d9ff; margin: 0 auto;">
+    <h3 class="lead display-6 w-100" th:text="|${pair.getSubject().getName()}|">Виртуальная очередь</h3>
+    <p class="pb-3 lead" style="border-bottom: 1px solid #04d9ff;">Виртуальная очередь на сдачу работ</p>
+    <div class="d-flex mt-5 mb-2 w-50 justify-content-between flex-row" style="border-bottom: 3px solid #04d9ff; margin: 0 auto;">
       <p class="w-50 text-center">Место:</p>
       <p class="w-50 text-center">Студент:</p>
     </div>

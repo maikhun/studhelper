@@ -63,7 +63,7 @@
     <div class="first-part mb-5 w-50 text-center" style="border-bottom: 1px solid #04d9ff">
       <h2 class="title display-6 p-3" th:text="|Список студентов гр. ${student.getGroupNumber()}|">Список студентов</h2>
     </div>
-    <div class="cards d-flex justify-content-around">
+    <div class="cards d-flex flex-wrap justify-content-around">
       <th:block th:each="oneStudent : ${groupStudents}">
         <div class="card m-2 bg-dark lead text-white" style="width: 18rem; border: 1px solid #04d9ff">
           <div class="card-body">

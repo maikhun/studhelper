@@ -24,13 +24,14 @@ public class ScheduleService {
      * @return Расписание
      * */
     private Schedule createSchedule(Group group) {
-        String type = "Числитель";
+        String typeFirst = "Числитель";
+        String typeSecond = "Знаменатель";
         Schedule schedule = scheduleRepository.findByGroup(group);
         if (schedule != null)
             return schedule;
         Schedule newSchedule = new Schedule();
         newSchedule.setGroup(group);
-        newSchedule.setType(type);
+        newSchedule.setType(typeFirst);
         scheduleRepository.save(newSchedule);
         return newSchedule;
     }
@@ -43,10 +44,12 @@ public class ScheduleService {
         var schedule = createSchedule(group);
         schedule.setPairs(pairService.getPairsByGroupAndWeek(group, schedule.getType()));
         pairService.getPairsByGroupAndWeek(group, schedule.getType());
-
         scheduleRepository.save(schedule);
     }
-
+    /**
+     * Поиск расписания по группе
+     * @param group - Номер студенческой группы
+     * */
     public Schedule findByGroup(Group group) {
         return scheduleRepository.findByGroup(group);
     }
