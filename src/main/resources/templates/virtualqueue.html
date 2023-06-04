@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/styles.css" />
+
+</head>
+<body class="bg-dark text-white">
+<header class="mb-3" style="border-bottom: 1px solid #04d9ff">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#navbarExample01"
+              aria-controls="navbarExample01"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="d-flex justify-content-between collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+          <li class="lead nav-item">
+            <a class="nav-link" th:href="@{/main-page}">Главная страница</a>
+          </li>
+          <li class="lead nav-item">
+            <a class="nav-link" th:href="@{/students}">Студенты</a>
+          </li>
+          <li class="lead nav-item">
+            <a class="nav-link" th:href="@{/teachers}">Преподаватели</a>
+          </li>
+          <li class="lead nav-item">
+            <a class="nav-link" th:href="@{/subjects}">Дисциплины</a>
+          </li>
+          <li class="lead nav-item">
+            <a class="nav-link active"  style="color: #04d9ff;" th:href="@{/schedule}">Расписание занятий</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0 text-white">
+          <li class="lead nav-item">
+            <a class="nav-link" th:href="@{/students/{id}(id = ${student.getId()})}" th:text="|Личный кабинет|"></a>
+          </li>
+          <li class="lead nav-item ">
+            <form th:action="@{/logout}" method="post">
+              <input type="submit" class="nav-link" style="color: #04d9ff;" value="Выйти из аккаунта">
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container-md d-flex justify-content-center" style="margin: 2.5% auto;">
+  <form class="m-5" style="width: 60%;" th:action="@{/adduserintoqueue/{id}(id = ${pair.getId()})}" method="post">
+    <h3 class="text-center display-6" style="color:#04d9ff;">Занимание очереди на сдачу работы</h3>
+    <div class="form-outline mb-4">
+      <input type="hidden" name="pairId" id="form3Example4" class="form-control" th:value="${pair.getId()}" readonly/>
+    </div>
+    <div class="form-outline mb-4">
+      <label class="lead mb-2" for="form3Example1">Студенческое занятие</label>
+      <input type="text" name="subjectName" id="form3Example1" class="form-control" th:value="${pair.getSubject().getName()}" readonly/>
+    </div>
+    <div class="form-outline mb-4">
+      <label class="lead mb-2" for="form3Example1">Тип практики</label>
+      <input type="text" name="pairType" id="form3Example3" class="form-control" th:value="${pair.getType()}" readonly/>
+    </div>
+    <div class="btn-group" style="  width: 100%">
+      <input type="submit" style="background: #04d9ff; border: 1px solid #04d9ff" class="lead btn btn-primary btn-block mb-4 text-dark" value="Занять очередь"/>
+    </div>
+    <div class="d-flex justify-content-between">
+      <a  th:href="@{/schedule}" style="text-decoration: none; color: grey;" class="lead text-center"><- Вернуться к расписанию занятий</a>
+      <a  th:href="@{/listqueue/{id}(id = ${pair.getId()})}" style="text-decoration: none; color: grey;" class="lead text-center">Просмотреть очередь -></a>
+    </div>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+</html>

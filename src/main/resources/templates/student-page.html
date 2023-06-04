@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|Студент - ${currentStudent.getSecondName()} ${currentStudent.getFirstName()}|"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+          crossorigin="anonymous">
+
+</head>
+<body class="bg-dark text-white">
+<header class="mb-3" style="border-bottom: 1px solid #04d9ff">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarExample01"
+                    aria-controls="navbarExample01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="d-flex justify-content-between collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+                    <li class="lead nav-item">
+                        <a class="nav-link" th:href="@{/main-page}">Главная страница</a>
+                    </li>
+                    <li class="lead nav-item">
+                        <a class="nav-link active"  style="color: #04d9ff;" th:href="@{/students}">Студенты</a>
+                    </li>
+                    <li class="lead nav-item">
+                        <a class="nav-link" th:href="@{/teachers}">Преподаватели</a>
+                    </li>
+                    <li class="lead nav-item">
+                        <a class="nav-link" th:href="@{/subjects}">Дисциплины</a>
+                    </li>
+                    <li class="lead nav-item">
+                        <a class="nav-link" th:href="@{/schedule}">Расписание занятий</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 text-white">
+                    <li class="lead nav-item">
+                        <a class="nav-link" th:href="@{/students/{id}(id = ${currentStudent.getId()})}" th:text="|Личный кабинет|"></a>
+                    </li>
+                    <li class="lead nav-item ">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" class="nav-link" style="color: #04d9ff;" value="Выйти из аккаунта">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container-md" style="width: 80%;">
+
+    <section class="" style="height: 89vh;">
+        <div class="first-part mb-2 w-100 text-center" style="border-bottom: 1px solid #04d9ff">
+            <h2 class="title display-6 p-3" th:text="|${currentStudent.getSecondName()} ${currentStudent.getFirstName()}|"></h2>
+        </div>
+        <div class="info px-5 py-5">
+            <p class="lead" th:text="|Фамилия: ${currentStudent.getSecondName()}|">asdasd</p>
+            <p class="lead" th:text="|Имя: ${currentStudent.getFirstName()}|">asdasd</p>
+            <p class="lead" th:text="|Email: ${currentStudent.getEmail()}|">asdasd</p>
+            <p class="lead" th:text="|Студенческая группа: ${currentStudent.getGroupNumber()}|">asdasd</p>
+            <div class="social-media" th:if="${!urlValid}">
+                <p class="lead" th:text="|Социальные сети:|">Социальные сети:</p>
+                <div class="px-4 py-1" th:if="${github}">
+                    <label class="lead text-center" style="width: 6%;" th:text="|GitHub:|">GitHub:</label>
+                    <a class="lead px-1" th:text="|Ссылка на GitHub|" target="_blank" style="text-decoration: none; color: #04d9ff;" th:href="${currentStudent.getGithubUrl()}">GITHUB</a>
+                </div>
+                <div class="px-4 py-1" th:if="${vk}">
+                    <label class="lead " style="width: 6%;" th:text="|VK:|">VK:</label>
+                    <a class="lead px-1" th:text="|Ссылка на VK|" target="_blank" style="text-decoration: none; color: #04d9ff;" th:href="${currentStudent.getVkUrl()}">VK</a>
+                </div>
+                <div class="px-4 py-1 d-flex flex-row" th:if="${telegram}">
+                    <label class="lead" style="width: 6%;" th:text="|Tg:|">Tg:</label>
+                    <p class="lead px-1" th:text="${currentStudent.getTelegram()}">ssss</p>
+                </div>
+            </div>
+        </div>
+        <div class="btns d-flex justify-content-between w-100">
+
+            <div class="btn-group">
+                <a class="" style="text-decoration: none; color: grey;" th:href="@{/students}">
+                    <- Вернуться к списку студентов
+                </a>
+            </div>
+
+            <div class="btn-group" th:if="${currentStudent.getId() == user.getId()}">
+                <a class="btn btn-primary text-dark" style="background: #04d9ff; border: 1px solid #04d9ff" th:href="@{/students/{id}/change-student-page(id = ${currentStudent.getId()})}">
+                    Изменить данные
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+</html>
